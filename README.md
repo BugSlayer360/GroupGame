@@ -1,7 +1,7 @@
 # GroupGame
 
 ## Team Members:
-* Ender Hale, the leader, the main coder, and the G.O.A.T., who keeps things running and in check 
+* Ender Hale, the leader, the main coder, and the G.O.A.T., who keeps things running and effiecient
 * Nico Snow, the artist, the illustrator, who had the idea for the game and the art
 * Forrest Jefferson, the time manager, who checks if we are keeping track with schedule
   
