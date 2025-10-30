@@ -12,4 +12,4 @@ Lunacy is a 2D psychological horror game. You wake up in an open clearing with t
 * [Mac App]()
 * [Source Code](https://github.com/BugSlayer360/GroupGame/tree/main/src)
 
-##### Licensed by MIT
+##### Contributed and Licensed by MIT
