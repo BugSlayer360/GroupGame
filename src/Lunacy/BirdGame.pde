@@ -1,1 +1,3 @@
-
+class BirdGame {
+  // Member Variables
+}
