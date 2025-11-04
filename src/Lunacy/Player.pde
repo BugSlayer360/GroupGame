@@ -5,8 +5,8 @@ class Player {
 
   // Constructor
   Player() {
-    x = width/2
-    y = height/2
+    x = width/2-50;
+    y = height/2;
     w = 100;
     dude = loadImage("dude.png")
     speed = 10;
