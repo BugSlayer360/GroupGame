@@ -2,7 +2,7 @@ class Bird {
   
   // Member Variables
   int x, y, w, speed;
-  boolean left, right, evil;
+  boolean left, evil;
   PImage bird, evilBird;
   
   // Constructors
@@ -12,16 +12,15 @@ class Bird {
     if(random(2)==1) {
       left = true;
     } else {
-      right = true;
+      left = false;
     }
 
     if(left == true) {
       x = int(random(-50,-10));
-    }
-
-    if(right = true {
+    } else {
       x = int(random(width/2+10,width/2+50));
     }
+
     w = 10;
     evil = false;
     y = int(random(0,height/2));
@@ -32,7 +31,6 @@ class Bird {
 
   // Member Methods
   void update() {
-
     if(left == true) {
       x+=speed;
     }
@@ -50,13 +48,16 @@ class Bird {
     }
   }
 
-  boolean reachedSides() {
+  boolean reachedSideRight() {
     if (x>width+w && left == true) {
       return true;
     } else {
       return false;
-    }
-    if (x<0-w && right == true) {
+    } 
+  }
+
+  boolean reachedSideLeft() {
+    if (x<0-w && left == false) {
       return true;
     } else {
       return false;
