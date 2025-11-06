@@ -8,4 +8,8 @@ class: Tree{
     x=r1.tx;
     y=r1.ty;
   }
+  void display(){
+    tree.resize(100,100);
+    image(tree,x,y);
+  }
 }
