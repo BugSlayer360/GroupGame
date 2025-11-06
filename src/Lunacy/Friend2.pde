@@ -6,10 +6,10 @@ class Friend2{
   Friend2() {
     x = 500;
     y = 250;
-    sittingImage = loadImage("sittingImage.png");
-    fullSanityImage = loadImage("fullSanityImage.png");
-    moderateSanityImage = loadImage("moderateSanityImage.png");
-    lowSanityImage = loadImage("lowSanityImage.png");
+    sittingImage = loadImage("sittingImage2.png");
+    fullSanityImage = loadImage("fullSanityImage2.png");
+    moderateSanityImage = loadImage("moderateSanityImage2.png");
+    lowSanityImage = loadImage("lowSanityImage2.png");
   }
  // Member Methods
   void display() {
@@ -17,3 +17,8 @@ class Friend2{
     image(sittingImage, x, y);
   }
 }
+
+
+
+
+
