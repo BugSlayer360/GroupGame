@@ -1,10 +1,14 @@
-class AccuracyMiniGame {
+class AccuracyGame {
+
+  // Member Variables
   float targetSize = 50;
   float shrinkingCircle = 200;
   boolean active = false;
   boolean success = false;
   char requiredKey;
 
+
+  // Member Methods
   void start() {
     active = true;
     shrinkingCircle = 200;
