@@ -31,7 +31,7 @@ class BirdGame {
       b.update();
       b.display();
 
-      if (b.reachedSideRight() || b.reachedSideLeft() {
+      if (b.reachedSideRight() || b.reachedSideLeft()) {
         birds.remove(i);
         birds.add(new Bird());
       }
