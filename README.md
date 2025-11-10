@@ -15,6 +15,9 @@ Lunacy is a 2D psychological horror game. You wake up in an open clearing with t
 ![StartScreen](https://github.com/BugSlayer360/GroupGame/blob/main/images/StartScreen.png?raw=true)
 ![HUD](https://github.com/BugSlayer360/GroupGame/blob/main/images/lunacyexample.png?raw=true)
 
+## Game Mockup
+![Mockup]()
+
 ### Downloads:
 * [Windows EXE]()
 * [Mac App]()
