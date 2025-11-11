@@ -1,7 +1,8 @@
 class Bird {
   
   // Member Variables
-  int x, y, w, speed;
+  int x, y, w;
+  float speed;
   boolean left, evil;
   PImage bird, evilBird;
   
@@ -11,20 +12,16 @@ class Bird {
     // Checking Which Side Bird Spawns
     if(random(2)==1) {
       left = true;
-    } else {
-      left = false;
-    }
-
-    if(left == true) {
       x = int(random(-50,-10));
     } else {
+      left = false;
       x = int(random(width/2+10,width/2+50));
     }
 
     w = 10;
     evil = false;
     y = int(random(0,height/2));
-    speed = int(random(5,8));
+    speed = 1;
     bird = loadImage("bird.png");
     evilBird = loadImage("evilBird.png");
   }
@@ -34,7 +31,7 @@ class Bird {
     if(left == true) {
       x+=speed;
     }
-    if(right = true) {
+    if(left == false) {
       x-=speed;
     }
     
@@ -65,4 +62,3 @@ class Bird {
   }
   
 }
-
