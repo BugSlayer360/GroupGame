@@ -59,4 +59,4 @@ class BirdGame {
       inMiniGame = false; // exit the mini-game
     }
   }
-
+}
