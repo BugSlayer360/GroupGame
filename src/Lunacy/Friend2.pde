@@ -1,28 +1,30 @@
-class Friend2{
- // Member Variables
+class Friend2 {
+  // Member Variables
   int x, y;
-  PImage sittingImage;
- //Constructor
+  PImage f1, f2, f3, f4;
+  char state;
+  //Constructor
   Friend2() {
     x = 500;
     y = 250;
-    currentImage = loadImage("sittingImageF2.png");
-   
+    f1 = loadImage("sittingImagef2.png");
+    f2 = loadImage("normalSanityf2.png");
+    f3 = loadImage("lowSanityf2.png");
+    f4 = loadImage("veryLowSanityf2.png");
+    state = 's';
   }
- // Member Methods
+  // Member Methods
   void display() {
     imageMode(CENTER);
-    image(currentImage, x, y);
-  }
-  void mousePressed(sanity) {
-    if (mouseX > currentImage.X+100 && mouseX < currentImage.X-100 && mouseY > currentImage.Y+100 && mouseY < currentImage.Y-100){
-      if (sanity>700){
-        currentImage = loadImage("normalSanityF2.png");
-      }else if (sanity=<700 && sanity>400){
-        currentImage = loadImage("lowSanityF2.png");
-      }else{
-        currentImage = loadImage("incrediblyLowSanityF2.png");
-      }
+    if (state == 's') {
+      image(f1, x, y);
+    } else if (state == 'n'){
+      image(f2, x, y);
+    }else if (state == 'l'){
+      image(f3,x,y);
+    }else if (state == 'v'){
+      image(f4,x,y);
     }
   }
+
 }
