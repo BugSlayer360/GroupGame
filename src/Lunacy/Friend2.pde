@@ -1,24 +1,28 @@
 class Friend2{
  // Member Variables
   int x, y;
-  PImage sittingImage, fullSanityImage, moderateSanityImage, lowSanityImage;
+  PImage sittingImage;
  //Constructor
   Friend2() {
     x = 500;
     y = 250;
-    sittingImage = loadImage("sittingImage2.png");
-    fullSanityImage = loadImage("fullSanityImage2.png");
-    moderateSanityImage = loadImage("moderateSanityImage2.png");
-    lowSanityImage = loadImage("lowSanityImage2.png");
+    currentImage = loadImage("sittingImageF2.png");
+   
   }
  // Member Methods
   void display() {
     imageMode(CENTER);
-    image(sittingImage, x, y);
+    image(currentImage, x, y);
+  }
+  void mousePressed(sanity) {
+    if (mouseX > currentImage.X+100 && mouseX < currentImage.X-100 && mouseY > currentImage.Y+100 && mouseY < currentImage.Y-100){
+      if (sanity>700){
+        currentImage = loadImage("normalSanityF2.png");
+      }else if (sanity=<700 && sanity>400){
+        currentImage = loadImage("lowSanityF2.png");
+      }else{
+        currentImage = loadImage("incrediblyLowSanityF2.png");
+      }
+    }
   }
 }
-
-
-
-
-
