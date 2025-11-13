@@ -6,7 +6,7 @@ class Friend1{
   Friend1() {
     x = 0;
     y = 250;
-    currentImage = loadImage("sittingImage.png");
+    currentImage = loadImage("sittingImageF1.png");
    
   }
  // Member Methods
