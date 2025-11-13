@@ -1,4 +1,4 @@
-class: Tree{
+class Tree{
   // member variables
   Room r1;
   int x, y;
