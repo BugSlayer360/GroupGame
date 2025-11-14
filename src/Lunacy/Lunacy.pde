@@ -2,6 +2,7 @@
 BirdGame bg;
 Friend1 friend1;
 Friend2 friend2;
+ArrayList<Tree> trees = new ArrayList<Tree>();
 int sanity;
 char screen = '';
 Button btnMenu, btnSettings, btnCredits, btnBack;
