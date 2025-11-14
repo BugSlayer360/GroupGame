@@ -6,6 +6,7 @@ void setup() {
   size(500,500);
   bg = new BirdGame();
   friend1 = new Friend1();
+  tree = new Tree();
 }
 
 void draw() {
@@ -15,6 +16,7 @@ void draw() {
   //bg.keyPressed(char k);
   friend1.display();
   friend2.display();
+  tree.display();
 }
 
 void keyPressed() {
