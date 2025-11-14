@@ -4,13 +4,11 @@ Friend1 friend1;
 Friend2 friend2;
 int sanity;
 char screen = '';
-char room = '';
+Button btnMenu, btnSettings, btnCredits, btnBack;
 void setup() {
   size(500,500);
   bg = new BirdGame();
   friend1 = new Friend1();
-  tree = new Tree();
-  wood = new Wood
 }
 
 void draw() {
