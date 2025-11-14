@@ -1,10 +1,16 @@
-class MainRoom {
+class Room {
   // Member Variables
-  int x, y, w, h;
+Player p1;
+  int x, y, w, h, tx, ty;
   PImage ground;
 
   // Constructor
-  MainRoom() {
+  Room() {
+    p1 = new Player();
+    if(p1. roomNum == 0){
+      tx=50;
+      ty=50;
+    }
     x=width/2;
     y=height/2;
     w=500;
