@@ -1,21 +1,20 @@
 class Room {
   // Member Variables
-  int x, y, w, h;
+  int x, y, w;
   PImage ground;
 
   // Constructor
   Room() {
-    x = 
-    y = 
-    w = 
-    h = 
+    x = width/2;
+    y = height/2
+    w = 500;
     ground = loadImage("ground.png");
   }
 
   // Member Methods
   void display() {
-    imageMode(CENTER)
-      ground.resize(w, w);
+    imageMode(CENTER);
     image(ground, x, y);
+    ground.resize(w,w);
   }
 }
