@@ -5,8 +5,10 @@ class Friend2 {
   char state;
   //Constructor
   Friend2() {
-    x = 500;
-    y = 250;
+    x = 200;
+    y = 500;
+    x2 = 300;
+    y2 = height;
     f1 = loadImage("sittingImagef2.png");
     f2 = loadImage("normalSanityf2.png");
     f3 = loadImage("lowSanityf2.png");
@@ -19,11 +21,11 @@ class Friend2 {
     if (state == 's') {
       image(f1, x, y);
     } else if (state == 'n'){
-      image(f2, x, y);
+      image(f2, x2, y2);
     }else if (state == 'l'){
-      image(f3,x,y);
+      image(f3,x2,y2);
     }else if (state == 'v'){
-      image(f4,x,y);
+      image(f4,x2,y2);
     }
   }
 
