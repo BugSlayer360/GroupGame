@@ -2,8 +2,6 @@
 BirdGame bg;
 Friend1 friend1;
 Friend2 friend2;
-Tree tree;
-Wood wood;
 void setup() {
   size(500,500);
   bg = new BirdGame();
