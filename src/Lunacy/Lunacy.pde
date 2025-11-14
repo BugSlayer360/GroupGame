@@ -2,6 +2,9 @@
 BirdGame bg;
 Friend1 friend1;
 Friend2 friend2;
+int sanity;
+char screen = '';
+char room = '';
 void setup() {
   size(500,500);
   bg = new BirdGame();
