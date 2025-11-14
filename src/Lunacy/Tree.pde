@@ -1,13 +1,11 @@
 class Tree{
   // member variables
-  Room r1;
   int x, y;
   PImage tree;
   //constructors
-  Tree(){
-r1 = new Room();
-    x=r1.tx;
-    y=r1.ty;
+  Tree(x,y){
+    this.x=x;
+    this.y=y;
 tree= loadImage("tree.png");
   }
   void display(){
