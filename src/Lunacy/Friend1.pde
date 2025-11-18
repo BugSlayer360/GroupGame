@@ -1,6 +1,6 @@
 class Friend1 {
   // Member Variables
-  int x, y;
+  int x, y, x2, y2;
   PImage f1, f2, f3, f4;
   char state;
   //Constructor
