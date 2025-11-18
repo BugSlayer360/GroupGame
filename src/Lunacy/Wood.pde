@@ -1,26 +1,28 @@
-class Wood(){
+class Wood {
+  
   //member variables
-  int x,y,w,d;
+  int w;
+  float x, y, d;
   PImage stick;
-  //constructors
-  Wood(){
+  
+  // Constructors
+  Wood() {
     x=int(random(width));
-    y=int(random(height,height/2));
+    y=int(random(height, height/2));
     w=15;
-    d=dist(MOUSEX,MOUSEY,x,y);
+    d=dist(mouseX, mouseY, x, y);
   }
-  void display(){
-    stick.resize(w,w);
-    image(stick,x,y);
+  
+  void display() {
+    stick.resize(w, w);
+    image(stick, x, y);
   }
-
-  void mousePressed() {
-    boolean grabbed() {
-      if(d<15){
-        return true;
-      } else {
-        return false;
-      }
+  
+  boolean grabbed() {
+    if (d<15) {
+      return true;
+    } else {
+      return false;
     }
   }
 }
