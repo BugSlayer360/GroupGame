@@ -7,8 +7,8 @@ class Wood {
   
   // Constructors
   Wood() {
-    x=int(random(width));
-    y=int(random(height, height/2));
+    this.x=x
+    this.y=y
     w=15;
     d=dist(mouseX, mouseY, x, y);
   }
