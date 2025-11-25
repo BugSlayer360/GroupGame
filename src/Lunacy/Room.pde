@@ -1,6 +1,6 @@
 class Room {
   // Member Variables
-  int x, y, w;
+  int x, y, w, h;
   ArrayList<Tree> trees = new ArrayList<Tree>();
   PImage ground;
 
@@ -9,14 +9,14 @@ class Room {
     x = width/2;
     y = height/2
     w = 500;
+    h = 500;
     ground = loadImage("ground.png");
-
   }
 
   // Member Methods
   void display() {
     imageMode(CENTER);
     image(ground, x, y);
-    ground.resize(w,w);
+    ground.resize(w,h);
   }
 }
