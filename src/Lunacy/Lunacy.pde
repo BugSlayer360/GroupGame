@@ -3,8 +3,9 @@ BirdGame bg;
 Friend1 friend1;
 Friend2 friend2;
 int sanity;
-char screen = 's';
-Button btnMenu, btnSettings, btnBack, btnHowToPlay, btnStart, btnPlay, btnPause;
+char screen = 'm';
+Button btnMenu, btnBack, btnHowToPlay, btnPlay, btnPause;
+PImage menu, howToPlay, gameOver;
 
 
 void setup() {
@@ -14,50 +15,110 @@ void setup() {
   friend1 = new Friend1();
   friend2 = new Friend2();
 
-  // Screens in the game
-  btnMenu = new Button("Menu", 220, 125, 160, 50);
-  btnBack = new Button("Back", 220, 125, 160, 50);
-  btnSettings = new Button("Settings", 220, 125, 160, 50);
-  btnHowToPlay = new Button("How To Play", 220, 125, 160, 50);
-  btnPlay = new Button("Start", 220, 125, 160, 50);
-  btnPause = new Button("Pause", 220, 125, 160, 50);
+  // Buttons in the game
+  btnMenu = new Button("Menu", 220, 125, 55, 40);
+  btnBack = new Button("Back", 220, 125, 55, 40);
+  btnHowToPlay = new Button("How To Play", 220, 125, 100, 40);
+  btnPlay = new Button("Start", 220, 125, 55, 40);
+  btnPause = new Button("Pause", 220, 125, 55, 40);
+  //Screens
+  menu = loadImage("StartScreen.png");
+  howToPlay = loadImage("lunacyHowToPlay.png");
+  gameOver = loadImage("gameOver.png");
 }
 
 
 
 void draw() {
-  background(135, 206, 235);
   switch(screen) {
-    //Start Game
-  case 's':
-    background(0);
-    // Settings
-  case 't':
-    background(100);
+    //Play Game
+  case 'p':
+    playScreen();
+    break;
+
+
     // How To Play screen
   case 'h':
-    background(0, 0, 100);
+    howToPlayScreen();
+    break;
+
+
     // Menu screen
   case 'm':
-    background(0, 200, 0);
+    menuScreen();
+    break;
+
+
     // Pause screen
   case 'u':
-    background(0, 0, 0);
+    pauseScreen();
+    break;
+
+
     // gameover screen
   case 'g':
-    background(300, 0);
+    gameOverScreen();
+    break;
   }
-  bg.start();
-  bg.update();
-  friend1.display();
-  friend2.display();
 }
 
-void startScreen() {
+void menuScreen() {
+  background(80);
+  imageMode(CENTER);
+  image(menu, width/2, height/2);
+  menu.resize(500,500);
+  btnPlay.display(width/2-45, 150);
+  btnPlay.clicked(mouseX, mouseY);
+  btnHowToPlay.display(width/2+50, 150);
+  btnHowToPlay.clicked(mouseX, mouseY);
 }
 
-
-void keyPressed() {
+void howToPlayScreen() {
+  background(80);
+  imageMode(CENTER);
+  image(howToPlay, width/2, height/2);
+  howToPlay.resize(500, 500);
+  btnMenu.display(35,25); 
+  btnMenu.clicked(mouseX, mouseY);
 }
+
+void pauseScreen() {
+  background(80);
+  pushStyle();
+  rectMode(CENTER);
+  fill(150,50,50,120);
+  rect(width/2,height/2,100,200);
+  popStyle();
+  btnMenu.display(width/2, 300);  
+  btnMenu.clicked(mouseX, mouseY);
+  btnBack.display(width/2, 200); 
+  btnBack.clicked(mouseX, mouseY);
+}
+
+void playScreen() {
+  background(80);
+  btnPause.display(100,100);
+  btnPause.clicked(mouseX, mouseY);
+}
+
+void gameOverScreen() {
+  background(80);
+  imageMode(CENTER);
+  image(gameOver, width/2, height/2);
+  btnMenu.display(50,50);
+  btnMenu.clicked(mouseX, mouseY);
+}
+
 void mousePressed() {
+  if (btnMenu.clicked(mouseX, mouseY)) {
+    screen = 'm';
+  } else if(btnPlay.clicked(mouseX, mouseY)) {
+    screen = 'p';
+  } else if(btnBack.clicked(mouseX, mouseY)) {
+    screen = 'p';
+  } else if(btnHowToPlay.clicked(mouseX, mouseY)) {
+    screen = 'h';
+  } else if(btnPause.clicked(mouseX, mouseY)) {
+    screen = 'u';
+  }
 }
