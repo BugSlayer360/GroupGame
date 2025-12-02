@@ -1,7 +1,7 @@
 # Lunacy
 
 ## Team Members:
-* Ender Hale, the leader, and the main coder who keeps things running and efficient. I am in charge of the mini games and with helping with the rooms. I am also in charge of the different screens.
+* Ender Hale, the leader, and the main coder who keeps things running and efficient. I am in charge of the mini games and with helping with the rooms. I am also in charge of the different screens. See AccuracyGame.pde, Bird.pde, BirdGame.pde, and more!
 * Nico Snow, the artist, the illustrator, who had the idea for the game and the art
 * Forrest Jefferson, the time manager, who checks if we are keeping track with schedule
   
