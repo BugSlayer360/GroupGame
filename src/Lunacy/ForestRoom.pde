@@ -1,6 +1,8 @@
 class ForestRoom {
   // Member Variables
   int x, y, w, h, treeCount, roomNum;
+Tree t;
+Wood w;
   ArrayList<Tree> trees = new ArrayList<Tree>();
   ArrayList<Wood> woods = new ArrayList<Wood>();
   PImage ground;
@@ -27,5 +29,8 @@ class ForestRoom {
     imageMode(CENTER);
     image(ground, x, y);
     ground.resize(w,h);
+// Forrest: displays the trees and wood within the ForestRoom class, which displays within the main class
+    t.display;
+    w.display;
   }
 }
