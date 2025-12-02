@@ -1,3 +1,5 @@
+//Forrest Jefferson| tree
+// to do list: display tree, that's about it...
 class Tree {
   // member variables
   int x, y, w, h;
