@@ -27,7 +27,7 @@ class ForestRoom {
     image(ground, x, y);
     ground.resize(w,h);
 // Forrest: displays the trees and wood within the ForestRoom class, which displays within the main class
-    t.display;
-    w.display;
+    trees.display;
+    woods.display;
   }
 }
