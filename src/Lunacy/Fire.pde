@@ -6,7 +6,7 @@ class Fire {
   Fire() {
     x = width/2;
     y = height/2;
-    w = 100
+    w = 100;
     h = 75;
     //bigFire = loadImage("bigFire.png");
     //dwindlingFire = loadImage("dwindling.png");
