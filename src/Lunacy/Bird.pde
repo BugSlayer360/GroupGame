@@ -1,3 +1,5 @@
+// Ender Hale made this class | December 2 2025 | Lunacy
+
 class Bird {
   
   // Member Variables
