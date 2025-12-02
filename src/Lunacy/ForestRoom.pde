@@ -1,7 +1,6 @@
 class ForestRoom {
   // Member Variables
-  int x, y, w, h, treeCount;
-  char roomNum = 'm';
+  int x, y, w, h, treeCount, roomNum;
   ArrayList<Tree> trees = new ArrayList<Tree>();
   ArrayList<Wood> woods = new ArrayList<Wood>();
   PImage ground;
@@ -12,6 +11,7 @@ class ForestRoom {
     y = height/2
     w = 500;
     h = 500;
+    roomNum = 
     treeCount = int(random(8,10));
     ground = loadImage("ground.png");
     for (int i = 0; i < treeCount; i++) {
