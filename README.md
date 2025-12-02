@@ -1,7 +1,7 @@
 # Lunacy
 
 ## Team Members:
-* Ender Hale, the leader, the main coder, and the G.O.A.T., who keeps things running and efficient.
+* Ender Hale, the leader, and the main coder who keeps things running and efficient. I am in charge of the mini games and with helping with the rooms. I am also in charge of the different screens.
 * Nico Snow, the artist, the illustrator, who had the idea for the game and the art
 * Forrest Jefferson, the time manager, who checks if we are keeping track with schedule
   
