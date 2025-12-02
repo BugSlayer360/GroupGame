@@ -1,3 +1,5 @@
+// Forrest Jefferson| wood
+// to do list: display wood, get wood sprite
 class Wood {
   
   //member variables
