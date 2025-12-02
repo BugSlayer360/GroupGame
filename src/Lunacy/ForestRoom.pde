@@ -1,6 +1,6 @@
 class ForestRoom {
   // Member Variables
-  int x, y, w, h, treeCount, roomNum;
+  int x, y, w, h, treeCount;
 Tree t;
 Wood w;
   ArrayList<Tree> trees = new ArrayList<Tree>();
@@ -13,7 +13,6 @@ Wood w;
     y = height/2
     w = 500;
     h = 500;
-    roomNum = 
     treeCount = int(random(8,10));
     ground = loadImage("ground.png");
     for (int i = 0; i < treeCount; i++) {
