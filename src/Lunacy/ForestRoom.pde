@@ -8,7 +8,7 @@ class ForestRoom {
   // Constructor
   ForestRoom() {
     x = width/2;
-    y = height/2
+    y = height/2;
     w = 500;
     h = 500;
     treeCount = int(random(8,10));
