@@ -20,6 +20,7 @@ class Bird {
       x = int(random(width/2+10,width/2+50));
     }
 
+    // Set variables
     w = 10;
     evil = false;
     y = int(random(0,height/2));
@@ -28,7 +29,9 @@ class Bird {
     evilBird = loadImage("evilBird.png");
   }
 
+
   // Member Methods
+  // Move the bird depending on side spawned
   void update() {
     if(left == true) {
       x+=speed;
@@ -37,7 +40,8 @@ class Bird {
       x-=speed;
     }
     
-  }
+  }  
+  // Show bird depending on picture
   void display() {
     imageMode(CENTER);
     if (evil) {
@@ -47,6 +51,7 @@ class Bird {
     }
   }
 
+  // Has the bird passed the screen?
   boolean reachedSideRight() {
     if (x>width+w && left == true) {
       return true;
@@ -55,6 +60,7 @@ class Bird {
     } 
   }
 
+  // Has the bird passed the screen?
   boolean reachedSideLeft() {
     if (x<0-w && left == false) {
       return true;
