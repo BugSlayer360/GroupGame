@@ -12,6 +12,7 @@ class Wood {
     this.x=x
     this.y=y
     w=15;
+//calculate distance beetween wood and mouse
     d=dist(mouseX, mouseY, x, y);
   }
   
@@ -19,7 +20,7 @@ class Wood {
     stick.resize(w, w);
     image(stick, x, y);
   }
-  
+  // if the mouse is near the stick, grabbed is true
   boolean grabbed() {
     if (d<15) {
       return true;
