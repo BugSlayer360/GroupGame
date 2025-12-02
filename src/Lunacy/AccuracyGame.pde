@@ -1,4 +1,4 @@
-// Ender Hale made this class | December 2 2025 | Lunacy
+// This is all AI, just to fill in the class, Ender Hale will make it later | December 2 2025 | Lunacy
 
 class AccuracyGame {
 
