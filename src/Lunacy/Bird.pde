@@ -23,7 +23,7 @@ class Bird {
     // Set variables
     w = 10;
     evil = false;
-    y = int(random(0,height/2));
+    y = int((x*x)/1028+x/2+random(200,400)); //I thought that the bird should swoop down. If you dissagree with me, tell me.
     speed = 1;
     bird = loadImage("bird.png");
     evilBird = loadImage("evilBird.png");
