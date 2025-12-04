@@ -12,6 +12,15 @@ class Tree {
     this.h = h;
     tree = loadImage("tree.png");
   }
+  
+  Tree(int w, int h) {
+    x = int(random(width));
+    y = int(random(height));
+    this.w = w;
+    this.h = h;
+    tree = loadImage("tree.png");
+  }
+  
   void display() {
     imageMode(CENTER);
     image(tree, x, y, w, h);
