@@ -20,6 +20,7 @@ class Bird {
       left = false;
       x = int(random(width/2+10,width/2+50));
     }
+  }
 
     // Set variables
     w = 10;
