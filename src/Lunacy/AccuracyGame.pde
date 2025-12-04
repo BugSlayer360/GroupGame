@@ -42,12 +42,7 @@ class AccuracyGame {
     popStyle();
   }
 
-  void keyPressed(char k) {
-    if (active && k == requiredKey) {
-      if (abs(shrinkingCircle - targetSize) < 10) {
-        success = true;
-      }
-      active = false;
+
     }
   }
 }
