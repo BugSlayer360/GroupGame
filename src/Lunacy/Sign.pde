@@ -18,6 +18,7 @@ class Sign {
 
   // Member Methods
   void display() {
+    // Sets a rotation point and makes image
     pushMatrix();
     translate(x,y);
     rotate(angle);
@@ -27,6 +28,7 @@ class Sign {
     popMatrix();
   }
   
+  // Checks if the sign is clicked or not
   boolean clicked(int tempX, int tempY) {
     if (tempX > x-w/2 && tempX < x+w/2 && tempY > y-h/2 && tempY < y+h/2) {
       return true;
