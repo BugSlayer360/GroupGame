@@ -1,5 +1,5 @@
 // Forrest Jefferson| wood
-// to do list: display wood, get wood sprite
+// to do list: get wood sprite
 class Wood {
   
   //member variables
@@ -18,6 +18,8 @@ class Wood {
   }
   
   void display() {
+//recalculate d every frame
+    d=dist(mouseX, mouseY, x, y);
     stick.resize(w, w);
     image(stick, x, y);
   }
