@@ -24,7 +24,7 @@ class Bird {
     // Set variables
     w = 10;
     evil = false;
-    y = int((x*x)/1028+x/2+randomSeed(200,400)); 
+    y = int((x*x)/1028+x/2+random(200,400)); 
     bird = loadImage("bird.png");
     evilBird = loadImage("evilBird.png"); 
 
