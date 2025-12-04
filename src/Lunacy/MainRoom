@@ -1,5 +1,5 @@
 // Ender Hale helped with this class | December 2 2025 | Lunacy
-// to do list: load bird and evil bird globally, call keypressed in accuracygame, clicked() returns true/false but in mousePressed(), the button's clicked() is called multiple times; better to store the result in a variable to avoid repeated calls. update d dynamicly
+// to do list: call keypressed in accuracygame, clicked() returns true/false but in mousePressed(), the button's clicked() is called multiple times; better to store the result in a variable to avoid repeated calls. update d dynamicly
 class MainRoom {
   // Member Variables
   int x, y, w, h;
