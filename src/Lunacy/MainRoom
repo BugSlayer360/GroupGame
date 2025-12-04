@@ -11,7 +11,6 @@ class MainRoom {
     y = height/2;
     w = 500;
     h = 500;
-    treeCount = int(random(8,10));
     ground = loadImage("ground.png");
     for (int i = 0; i < treeCount; i++) {
       trees.add(new Tree());
