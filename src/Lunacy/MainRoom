@@ -1,5 +1,4 @@
 // Ender Hale helped with this class | December 2 2025 | Lunacy
-// to do list: update d dynamicly
 class MainRoom {
   // Member Variables
   int x, y, w, h;
