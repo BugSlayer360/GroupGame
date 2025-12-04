@@ -1,5 +1,4 @@
 // Forrest Jefferson | December 2 2025 | Lunacy
-// To do list: display tree, that's about it...
 class Tree {
   // member variables
   int x, y, w, h;
