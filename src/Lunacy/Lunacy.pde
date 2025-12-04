@@ -3,6 +3,7 @@ BirdGame bg;
 Friend1 friend1;
 Friend2 friend2;
 ForestRoom forestRoom;
+MainRoom maqinRoom;
 int sanity;
 char screen = 'm';
 Button btnMenu, btnBack, btnHowToPlay, btnPlay, btnPause;
@@ -16,6 +17,7 @@ void setup() {
   friend1 = new Friend1();
   friend2 = new Friend2();
   forestRoom = new ForestRoom();
+  mainRoom = new MainRoom();
 
   // Buttons in the game
   btnMenu = new Button("Menu", 220, 125, 55, 40);
