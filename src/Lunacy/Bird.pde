@@ -1,5 +1,5 @@
 // Ender Hale made this class | December 2 2025 | Lunacy
-
+//I helped! -Forrest
 class Bird {
   
   // Member Variables
@@ -7,8 +7,7 @@ class Bird {
   float speed;
   boolean left, evil;
   PImage bird, evilBird;
-    bird = loadImage("bird.png");
-    evilBird = loadImage("evilBird.png"); //loadImage() called inside constructor could be inefficient if creating many birds
+  
   
   // Constructors
   Bird() {
@@ -25,9 +24,9 @@ class Bird {
     // Set variables
     w = 10;
     evil = false;
-    y = int((x*x)/1028+x/2+random(200,400)); //I thought that the bird should swoop down. If you dissagree with me, tell me.
-    speed = 1;
-  }
+    y = int((x*x)/1028+x/2+randomSeed(200,400)); 
+    bird = loadImage("bird.png");
+    evilBird = loadImage("evilBird.png"); 
 
 
   // Member Methods
