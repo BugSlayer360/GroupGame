@@ -1,5 +1,4 @@
 // Forrest Jefferson| wood
-// to do list: get wood sprite
 class Wood {
   
   //member variables
