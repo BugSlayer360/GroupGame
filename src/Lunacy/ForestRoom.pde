@@ -13,6 +13,7 @@ class ForestRoom {
     h = 500;
     treeCount = int(random(8,10));
     ground = loadImage("ground.png");
+    ground.resize(w,h);
     for (int i = 0; i < treeCount; i++) {
       trees.add(new Tree());
     }
@@ -25,7 +26,6 @@ class ForestRoom {
   void display() {
     imageMode(CENTER);
     image(ground, x, y);
-    ground.resize(w,h);
 // Forrest: displays the trees and wood within the ForestRoom class, which displays within the main class
     for (Tree t : trees) t.display();
     for (Wood w : woods) w.display();
