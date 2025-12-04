@@ -7,6 +7,8 @@ class Bird {
   float speed;
   boolean left, evil;
   PImage bird, evilBird;
+    bird = loadImage("bird.png");
+    evilBird = loadImage("evilBird.png"); //loadImage() called inside constructor could be inefficient if creating many birds
   
   // Constructors
   Bird() {
@@ -25,8 +27,6 @@ class Bird {
     evil = false;
     y = int((x*x)/1028+x/2+random(200,400)); //I thought that the bird should swoop down. If you dissagree with me, tell me.
     speed = 1;
-    bird = loadImage("bird.png");
-    evilBird = loadImage("evilBird.png");
   }
 
 
@@ -69,4 +69,4 @@ class Bird {
     }
   }
   
-}
+}//reachedSideLeft/reachedSideRight could be simplified
