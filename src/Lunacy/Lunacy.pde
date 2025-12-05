@@ -5,6 +5,8 @@ Button btnMenu, btnBack, btnHowToPlay, btnPlay, btnPause;
 ArrayList<Sign> signs = new ArrayList<Sign>();
 ArrayList<Tree> trees = new ArrayList<Tree>();
 Fire fire;
+Sign sign;
+ForestRoom forestRoom;
 PImage ground;
 PImage menu, howToPlay, gameOver;
 
@@ -26,6 +28,8 @@ void setup() {
   gameOver = loadImage("gameOver.png");
   ground = loadImage("ground.png");
   fire = new Fire();
+  sign = new Sign();
+  forestRoom = new ForestRoom();
   
   
   // Sets up trees and signs for future use
