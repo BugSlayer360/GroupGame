@@ -5,6 +5,7 @@ int treeCount;
 Button btnMenu, btnBack, btnHowToPlay, btnPlay, btnPause;
 ArrayList<Sign> signs = new ArrayList<Sign>();
 ArrayList<Tree> trees = new ArrayList<Tree>();
+ArrayList<Wood> woods = new ArrayList<Wood>();
 Fire fire;
 Sign sign;
 ForestRoom forestRoom;
