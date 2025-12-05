@@ -5,10 +5,9 @@ int treeCount;
 Button btnMenu, btnBack, btnHowToPlay, btnPlay, btnPause;
 ArrayList<Sign> signs = new ArrayList<Sign>();
 ArrayList<Tree> trees = new ArrayList<Tree>();
-ArrayList<Wood> woods = new ArrayList<Wood>();
+//ArrayList<Wood> woods = new ArrayList<Wood>();
 Fire fire;
 Sign sign;
-ForestRoom forestRoom;
 PImage ground;
 PImage menu, howToPlay, gameOver;
 
@@ -29,12 +28,10 @@ void setup() {
   howToPlay = loadImage("lunacyHowToPlay.png");
   gameOver = loadImage("gameOver.png");
   ground = loadImage("ground.png");
-  treeCount = int(random(8,10));
+  //treeCount = int(random(8,10));
   ground = loadImage("ground.png");
   fire = new Fire();
   sign = new Sign();
-  forestRoom = new ForestRoom();
-  treeCount = int(random(8,10));
   ground = loadImage("ground.png");
   
   
@@ -52,8 +49,7 @@ void setup() {
   trees.add(new Tree(width-80, height-50, 230, 230));
   trees.add(new Tree(400, 170, 230, 230));
 
-  for (Tree t : trees) t.display();
-  for (Wood w : woods) w.display();
+
 }
 
 
