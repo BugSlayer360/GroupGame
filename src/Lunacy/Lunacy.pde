@@ -440,3 +440,48 @@ void mousePressed() {
   }
 }
 
+
+
+
+
+
+// Ender Hale, Nico Snow, Forrest Jefferson | November 6 2025 | Lunacy
+int sanity;
+char screen = 'm';
+int treeCount;
+Friend1 friend1;
+Friend2 friend2;
+//Button btnMenu, btnBack, btnHowToPlay, btnPlay, btnPause;
+//ArrayList<Sign> signs = new ArrayList<Sign>();
+//ArrayList<Tree> trees = new ArrayList<Tree>();
+////ArrayList<Wood> woods = new ArrayList<Wood>();
+//Fire fire;
+//Sign sign;
+//PImage ground;
+//PImage menu, howToPlay, gameOver;
+
+
+void setup() {
+  size(2000, 2000);
+  sanity = 1000;
+   friend1 = new Friend1();
+  friend2 = new Friend2();
+
+}
+
+
+
+void draw() {
+  background(255);
+  friend1.display();
+  friend2.display();
+}
+
+void mousePressed(){
+  if (friend1.clicked(mouseX,mouseY)){
+    if (friend1.state=='n'){
+      //ENDER PLEASE MAKE IT SO IF YOU HAEV LOWER SANITY IT CHANGES IT TO A DIFFERENT STATE 
+      friend1.state='s';
+    }
+  }
+}
