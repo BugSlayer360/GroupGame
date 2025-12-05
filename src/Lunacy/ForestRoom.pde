@@ -24,7 +24,6 @@ class ForestRoom {
     imageMode(CENTER);
     image(ground, x, y);
 // Forrest: displays the trees and wood within the ForestRoom class, which displays within the main class
-    for (Tree t : trees) t.display();
-    for (Wood w : woods) w.display();
+
   }
 }
