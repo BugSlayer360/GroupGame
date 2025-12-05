@@ -1,7 +1,6 @@
 class ForestRoom {
   // Member Variables
-  ArrayList<Tree> trees = new ArrayList<Tree>();
-  ArrayList<Wood> woods = new ArrayList<Wood>();
+ 
   PImage ground;
 
   // Constructor
