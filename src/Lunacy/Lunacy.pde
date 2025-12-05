@@ -29,9 +29,13 @@ void setup() {
   howToPlay = loadImage("lunacyHowToPlay.png");
   gameOver = loadImage("gameOver.png");
   ground = loadImage("ground.png");
+  treeCount = int(random(8,10));
+  ground = loadImage("ground.png");
   fire = new Fire();
   sign = new Sign();
   forestRoom = new ForestRoom();
+  treeCount = int(random(8,10));
+  ground = loadImage("ground.png");
   
   
   // Sets up trees and signs for future use
