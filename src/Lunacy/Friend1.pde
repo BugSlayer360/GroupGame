@@ -10,8 +10,9 @@ class Friend1 {
     x = 800;
     y = 450;
     x2 = 300;
-    y2 = height;
+    y2 = 1500;
     f1 = loadImage("sittingimagef1.png");
+    f1.resize(100,200);
     f2 = loadImage("normalsanityf1.png");
     f3 = loadImage("lowsanityf1.png");
     f4 = loadImage("verylowsanityf1.png");
@@ -19,25 +20,32 @@ class Friend1 {
     dialogue = loadTable("tommydialogue.csv", "header");
   }
   // Member Methods
-  void display() {
+void display() {
     imageMode(CENTER);
     if (state == 's') {
       image(f1, x, y);
     } else if (state == 'n') {
       image(f1, x2, y2);
-      for (TableRow row : dialogue.rows()) {
+      //for (TableRow row : dialogue.rows()) {
 
-        int id = row.getInt("id");
-        String tdialogue = row.getString("dialogue");
-       // String name = row.getString("name");
-       row = dialogue.getRow(2);
+      //  int id = row.getInt("id");
+      //  String tdialogue = row.getString("dialogue");
+      // // String name = row.getString("name");
+      // row = dialogue.getRow(2);
 
-        println(id + " (" + tdialogue + ") has an ID of " + id);
-      }
+      //  println(id + " (" + tdialogue + ") has an ID of " + id);
+      //}
     } else if (state == 'l') {
       image(f3, x2, y2);
     } else if (state == 'v') {
       image(f4, x2, y2);
+    }
+  }
+  boolean clicked(int tempX, int tempY) {
+    if (tempX > x-50/2 && tempX < x+50/2 && tempY > y-100/2 && tempY < y+100/2) {
+      return true;
+    } else {
+      return false;
     }
   }
 }
