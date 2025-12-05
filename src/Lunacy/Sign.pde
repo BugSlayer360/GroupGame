@@ -14,6 +14,7 @@ class Sign {
     w = 100;
     h = 100;
     sign = loadImage("sign.png");
+    sign.resize(w, h);
   }
 
   // Member Methods
@@ -23,7 +24,6 @@ class Sign {
     translate(x,y);
     rotate(angle);
     imageMode(CENTER);
-    sign.resize(w, h);
     image(sign, 0, 0);
     popMatrix();
   }
