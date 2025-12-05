@@ -1,6 +1,7 @@
 // Ender Hale, Nico Snow, Forrest Jefferson | November 6 2025 | Lunacy
 int sanity;
 char screen = 'm';
+int treeCount;
 Button btnMenu, btnBack, btnHowToPlay, btnPlay, btnPause;
 ArrayList<Sign> signs = new ArrayList<Sign>();
 ArrayList<Tree> trees = new ArrayList<Tree>();
