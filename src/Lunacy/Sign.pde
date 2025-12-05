@@ -7,14 +7,13 @@ class Sign {
 
   // Constructor
   // You can set each sign individually
-  Sign(int x, int y, float angle) {
+  Sign(int x, int y, int w, int h, float angle) {
     this.x = x;
     this.y = y;
     this.angle = angle;
-    w = 100;
-    h = 100;
+    this.w = w;
+    this.h = h;
     sign = loadImage("sign.png");
-    sign.resize(w, h);
   }
 
   // Member Methods
@@ -24,6 +23,7 @@ class Sign {
     translate(x,y);
     rotate(angle);
     imageMode(CENTER);
+    //sign.resize(w, h);
     image(sign, 0, 0);
     popMatrix();
   }
