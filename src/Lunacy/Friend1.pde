@@ -11,10 +11,10 @@ class Friend1 {
     y = 450;
     x2 = 300;
     y2 = height;
-    f1 = loadImage("sittingImagef1.png");
-    f2 = loadImage("normalSanityf1.png");
-    f3 = loadImage("lowSanityf1.png");
-    f4 = loadImage("veryLowSanityf1.png");
+    f1 = loadImage("sittingimagef1.png");
+    f2 = loadImage("normalsanityf1.png");
+    f3 = loadImage("lowsanityf1.png");
+    f4 = loadImage("verylowsanityf1.png");
     state = 'n';
     dialogue = loadTable("tommydialogue.csv", "header");
   }
