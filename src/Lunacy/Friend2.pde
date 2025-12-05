@@ -5,9 +5,10 @@ class Friend2 {
   char state;
   //Constructor
   Friend2() {
-    x = 200;
-    y = 500;
+    x = 1300;
+    y = 350;
     f1 = loadImage("sittingImagef2.png");
+    f1.resize(100,100);
   }
   // Member Methods
   void display() {
