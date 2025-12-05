@@ -9,8 +9,7 @@ class ForestRoom {
     y = height/2;
     w = 500;
     h = 500;
-    treeCount = int(random(8,10));
-    ground = loadImage("ground.png");
+   
     ground.resize(w,h);
     for (int i = 0; i < treeCount; i++) {
       trees.add(new Tree());
