@@ -26,4 +26,11 @@ class Tree {
     image(tree, x, y, w, h);
   }
   
+  
+  void update(int x, int y) {
+    this.x = x;
+    this.y = y;
+    
+  }
+  
 }
