@@ -51,6 +51,9 @@ void setup() {
   trees.add(new Tree(20, height-20, 230, 230));
   trees.add(new Tree(width-80, height-50, 230, 230));
   trees.add(new Tree(400, 170, 230, 230));
+
+  for (Tree t : trees) t.display();
+  for (Wood w : woods) w.display();
 }
 
 
