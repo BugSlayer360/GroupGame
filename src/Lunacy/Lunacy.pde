@@ -1,5 +1,4 @@
 // Lunacy Game - Ender Hale, Nico Snow, Forrest Jefferson | Dec 2025
-//hi ender
 int sanity;
 char screen = 'm';
 char prevScreen;
