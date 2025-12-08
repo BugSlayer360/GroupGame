@@ -14,7 +14,7 @@ class Wood {
     w=15;
 //calculate distance beetween wood and mouse
     d=dist(mouseX, mouseY, x, y);
-    siick = loadImage("stick.png");
+    stick = loadImage("stick.png");
   }
   
   void display() {
