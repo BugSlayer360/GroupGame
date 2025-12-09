@@ -1,23 +1,20 @@
 class Fire {
   // Member variables
   int x, y, w, h;
-  //PImage bigFire, dwindlingFire;
+  PImage bigFire, dwindlingFire;
   // Constructers
   Fire() {
     x = width/2;
-    y = height/2;
-    w = 100;
-    h = 75;
-    //bigFire = loadImage("bigFire.png");
+    y = height/2+50;
+    w = 125;
+    h = 150;
+    bigFire = loadImage("bigFire.png");
+    bigFire.resize(w, h);
     //dwindlingFire = loadImage("dwindling.png");
   }
 
   void display() {
-    //imageMode(CENTER);
-    //image(fire,x,y);
-    //fire.resize(w,h);
-    rectMode(CENTER);
-    fill(100,100,250);
-    rect(x,y,w,h);
+    imageMode(CENTER);
+    image(bigFire, x, y);
   }
 }
