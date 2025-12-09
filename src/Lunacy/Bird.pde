@@ -1,7 +1,6 @@
 // Ender Hale made this class | Lunacy
 // I helped! -Forrest
 // Sure..... -Ender
-// I did! - Forrest
 // /forrest Jefferson made the sine waves bigger
 class Bird {
 
@@ -100,6 +99,10 @@ class Bird {
       t2 = 0;
       y = int(startY);
     }
+
+
+
+    
   }
 
 
@@ -163,7 +166,15 @@ class Bird {
       return false;
     }
   }
-}
+  
+  boolean clicked(int tempX, int tempY) {
+      if (tempX > x-w/2 && tempX < x+w/2 && tempY > y-h/2 && tempY < y+h/2) {
+        return true;
+      } else {
+        return false;
+      }
     }
-  }
+
+  
 }
+
