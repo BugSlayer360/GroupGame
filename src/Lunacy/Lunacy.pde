@@ -1,29 +1,57 @@
 // Lunacy Game - Ender Hale, Nico Snow, Forrest Jefferson | Dec 2025
-int sanity;
-char screen = 'm';
-char prevScreen;
+
+// Global variables
 Friend1 friend1;
 Friend2 friend2;
-Button btnBack, btnHowToPlay, btnPlay, btnPause, btnMenuHowToPlay, btnMenuPause, btnMenuGameOver;
+Fire fire;
+Button btnBack, btnHowToPlay, btnPlay, btnPause, btnMenuHowToPlay, btnMenuPause, btnMenuGameOver, btnInventory, btnInventoryBack;
 Sign sign, leftSign, upSign, rightSign, downSign, rightBirdSign;
+
+// Arraylists
 ArrayList<Tree> treesMain = new ArrayList<Tree>();
 ArrayList<Tree> treesForest = new ArrayList<Tree>();
 ArrayList<Bird> birds = new ArrayList<Bird>();
-PVector crosshair;
-Fire fire;
+
+// All-around variables
+int sanity;
+char screen = 'm';
+char prevScreen;
+
+// Accuracy game variables
+float targetSize, shrinkingCircle, birdX, birdY;
+char requiredKey;
+
+// Inventory variables
+boolean invOpen, invClosing;
+float invHeight, invMaxHeight, targetHeight, easing;
+int woodCount, meatCount;
+char invPrevScreen;
 
 PImage ground;
-PImage menu, howToPlay, gameOver;
+PImage menu, howToPlay, gameOver, invBG;
+PVector crosshair;
 
 void setup() {
   size(500, 500);
   sanity = 1000;
+
+  // Inventory
+  invOpen = false;
+  invClosing = false;
+  invMaxHeight = 300;
+  invHeight = 0;
+  easing = 0.2;
+  woodCount = 0;
+  meatCount = 0;
+  invBG = loadImage("inventoryBG.png");
 
   // Friends
   friend1 = new Friend1();
   friend2 = new Friend2();
 
   // Buttons
+  btnInventoryBack = new Button("Back", 220, 125, 55, 40);
+  btnInventory = new Button("Inventory", 220, 125, 100, 40);
   btnBack = new Button("Back", 220, 125, 55, 40);
   btnHowToPlay = new Button("How To Play", 220, 125, 100, 40);
   btnPlay = new Button("Start", 220, 125, 55, 40);
@@ -48,6 +76,14 @@ void setup() {
   for (int i = 0; i < 4; i++) {  // spawn 4 birds
     birds.add(new Bird());
   }
+
+  // Accuracy game variables
+  targetSize = 50;
+  shrinkingCircle = 200;
+  final char[] keyOptions = {'a', 's', 'd', 'f'};
+  requiredKey = keyOptions[int(random(keyOptions.length))];
+  birdX = 0; // Placeholder
+  birdY = 0; // Placeholder
 
 
 
@@ -74,35 +110,55 @@ void setup() {
 }
 
 void draw() {
-  //background(255);
-
-  switch(screen) {
-  case 'h':
-    howToPlayScreen();
-    break;
-  case 'm':
-    menuScreen();
-    break;
-  case 'u':
-    pauseScreen();
-    break;
-  case 'g':
-    gameOverScreen();
-    break;
-  case 'r':
-    mainRoomScreen();
-    break;
-  case 'f':
-    forestRoomScreen();
-    break;
-  case 'b':
-    birdGame();
-    break;
-  case 'w':
-    waterfallScreen();
-    break;
+  // If inventory is opening or closing, draw the previous screen first
+  if (screen == 'i') {
+    switch(invPrevScreen) {
+    case 'r':
+      mainRoomScreen();
+      break;
+    case 'f':
+      forestRoomScreen();
+      break;
+    case 'w':
+      waterfallScreen();
+      break;
+    case 'b':
+      birdGame();
+      break;
+    }
+    inventory(); // Draw inventory on top
+    // If not, then draw normal screen
+  } else {
+    switch(screen) {
+    case 'h':
+      howToPlayScreen();
+      break;
+    case 'm':
+      menuScreen();
+      break;
+    case 'u':
+      pauseScreen();
+      break;
+    case 'g':
+      gameOverScreen();
+      break;
+    case 'r':
+      mainRoomScreen();
+      break;
+    case 'f':
+      forestRoomScreen();
+      break;
+    case 'b':
+      birdGame();
+      break;
+    case 'w':
+      waterfallScreen();
+      break;
+    case 'i':
+      inventory();
+      break;
+    }
   }
-
   // Display friends
   friend1.display();
   friend2.display();
@@ -147,7 +203,7 @@ void pauseScreen() {
   // Show pause box with buttons
   pushStyle();
   rectMode(CENTER);
-  fill(0,150);
+  fill(0, 150);
   rect(width/2, height/2, 100, 200);
   popStyle();
 
@@ -191,6 +247,8 @@ void mainRoomScreen() {
   // Display and set clicked area for buttons
   btnPause.display(50, 40);
   btnPause.clicked(mouseX, mouseY);
+  btnInventory.display(width-50, 40);
+  btnInventory.clicked(mouseX, mouseY);
 }
 
 void forestRoomScreen() {
@@ -211,6 +269,8 @@ void forestRoomScreen() {
   // Display and set clicked area for buttons
   btnPause.display(50, 40);
   btnPause.clicked(mouseX, mouseY);
+  btnInventory.display(width-50, 40);
+  btnInventory.clicked(mouseX, mouseY);
 }
 
 
@@ -233,6 +293,14 @@ void birdGame() {
       birds.remove(i);
       birds.add(new Bird());
     }
+
+    for (Bird bird : birds) {
+      if (b.clicked(mouseX, mouseY)) {
+        birdX = bird.x;
+        birdY = bird.y;
+        accuracyGame();
+      }
+    }
   }
 
   // Draws Crosshair
@@ -247,16 +315,49 @@ void birdGame() {
   // Display and set clicked area for buttons
   btnPause.display(50, height-40);
   btnPause.clicked(mouseX, mouseY);
-  
+
   rightBirdSign.display();
   rightBirdSign.clicked(mouseX, mouseY);
+  btnInventory.display(width-50, 40);
+  btnInventory.clicked(mouseX, mouseY);
 }
 
 
 
+void accuracyGame() {
+  shrinkingCircle = 200;
+  // Decrease circle by 2 pixels every frame
+  shrinkingCircle -= 2;
+  // Check for ending mini-game
+  if (shrinkingCircle<=0) {
+    //go back to birdgame
+  }
+
+  // Draw Circles
+  pushStyle();
+  noFill();
+  // Target Circle
+  stroke(255);
+  ellipse(birdX, birdY, targetSize, targetSize);
+  //Shrinking Circle
+  stroke(150, 50, 50);
+  ellipse(birdX, birdY, shrinkingCircle, shrinkingCircle);
+
+  // Type text to say what key to press
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textSize(32);
+  text("Press: " + requiredKey, width/2, height/2 + 100);
+  popStyle();
+
+  checkKey(requiredKey);
+}
+
 
 
 void waterfallScreen() {
+  btnInventory.display(width-50, 40);
+  btnInventory.clicked(mouseX, mouseY);
 }
 
 
@@ -268,6 +369,56 @@ void randomizeForestTrees() {
   }
 }
 
+// -------------------- Check key for accuracy game --------------------
+void checkKey(char keyPressed) {
+  if (keyPressed == requiredKey) {
+    screen = 'b';
+    meatCount += 1;
+  }
+}
+
+// -------------------- Inventory --------------------
+void inventory() {
+
+  // Set targetHeight variable
+  if (invOpen) {
+    targetHeight = invMaxHeight;  // Panel is opening → target is full height
+  } else {
+    targetHeight = 0;             // Panel is closing → target is zero
+  }
+
+  // Moves inventory and eases off until finished
+  invHeight += (targetHeight - invHeight) * easing;
+
+  // Only draw if worth it, so no drawing when height is extremely small
+  if (invHeight > 0.5) {
+    // Draw background panel
+    imageMode(CENTER);
+    image(invBG, width/2, height/2, width-25, invHeight);
+
+    // Drawn text and counters with shrinking effect
+    pushStyle();
+    fill(255);
+    // Scalefactor float that tells how open the panel is from 0: closed, to 1: fully open
+    float scaleFactor = invHeight/ invMaxHeight;
+    textSize(60*scaleFactor);
+    text("Inventory:", width/2, 200);
+    textSize(45*scaleFactor);
+    text("Sticks: " + woodCount, 160, 280);
+    text("Meat: " + meatCount, 335, 280);
+    popStyle();
+
+    // Button to go back to gameplay
+    btnInventoryBack.display(width/2, height-100);
+    btnInventoryBack.clicked(mouseX, mouseY);
+  }
+
+  // When the inventory finishes closing, go to previous screen
+  if (invClosing == true && invHeight < 0.5) {
+    screen = invPrevScreen;
+    invClosing = false;
+  }
+}
 // -------------------- Mouse interaction --------------------
 void mousePressed() {
   // Menu / Pause / Game Over buttons
@@ -289,9 +440,19 @@ void mousePressed() {
   } else if (btnHowToPlay.clicked(mouseX, mouseY) && screen == 'm') {
     screen = 'h';
     return;
-  } else if ((btnPause.clicked(mouseX, mouseY)) && (screen == 'r' || screen == 'j' || screen == 'f' || screen == 'w' || screen == 'b')) {
+  } else if ((btnPause.clicked(mouseX, mouseY)) && (screen == 'r' || screen == 'f' || screen == 'w' || screen == 'b')) {
     prevScreen = screen;
     screen = 'u';
+    return;
+  } else if ((btnInventory.clicked(mouseX, mouseY)) && (screen == 'r' || screen == 'f' || screen == 'w' || screen == 'b')) {
+    invPrevScreen = screen;
+    invOpen = true;
+    invClosing = false;
+    screen = 'i';
+    return;
+  } else if (btnInventoryBack.clicked(mouseX, mouseY) && screen == 'i') {
+    invOpen = false;
+    invClosing = true;
     return;
   }
 
@@ -340,8 +501,8 @@ void mousePressed() {
       return;
     }
   }
-  
-  
+
+
   // Sign interaction when in birdGame
   if (screen == 'b') {
     if (rightBirdSign.clicked(mouseX, mouseY)) {
