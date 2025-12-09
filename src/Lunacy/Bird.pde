@@ -2,6 +2,7 @@
 // I helped! -Forrest
 // Sure..... -Ender
 // I did! - Forrest
+// /forrest Jefferson made the sine waves bigger
 class Bird {
 
   // ------------- Member Variables ---------------
@@ -121,7 +122,7 @@ class Bird {
 
     case 2: // Sine wave
       t += 0.1;
-      y = int(baseY + sin(t * frequency) * amplitude);
+      y = int(baseY + sin(t *10* frequency) * amplitude);
       break;
 
     case 3: // Bezier swoop
@@ -160,6 +161,9 @@ class Bird {
       return true;
     } else {
       return false;
+    }
+  }
+}
     }
   }
 }
