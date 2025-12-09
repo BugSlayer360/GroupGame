@@ -41,11 +41,11 @@ void display() {
       image(f4, x2, y2);
     }
   }
-  boolean clicked(int tempX, int tempY) {
-    if (tempX > x-50/2 && tempX < x+50/2 && tempY > y-100/2 && tempY < y+100/2) {
-      return true;
-    } else {
-      return false;
-    }
+//  boolean clicked(int tempX, int tempY) {
+  //  if (tempX > x-50/2 && tempX < x+50/2 && tempY > y-100/2 && tempY < y+100/2) {
+  //    return true;
+ //   } else {
+//      return false;
+//    }
   }
 }
