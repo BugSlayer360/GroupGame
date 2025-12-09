@@ -513,6 +513,15 @@ void mousePressed() {
     }
   }
 
+for (Bird bird : birds) {
+      if (bird.clicked(mouseX, mouseY)) {
+        birdX = bird.x;
+        birdY = bird.y;
+        screen = 'a';
+        return;
+      }
+    }
+
 
   // ------------------- Friend interaction -----------------------
   // Friend interaction based on sanity
