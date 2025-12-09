@@ -1,8 +1,8 @@
 // Lunacy Game - Ender Hale, Nico Snow, Forrest Jefferson | Dec 2025
 
 // Global variables
-Friend1 friend1;
-Friend2 friend2;
+//Friend1 friend1;
+//Friend2 friend2;
 Fire fire;
 Button btnBack, btnHowToPlay, btnPlay, btnPause, btnMenuHowToPlay, btnMenuPause, btnMenuGameOver, btnInventory, btnInventoryBack;
 Sign sign, leftSign, upSign, rightSign, downSign, rightBirdSign;
@@ -28,7 +28,7 @@ int woodCount, meatCount;
 char invPrevScreen;
 
 PImage ground;
-PImage menu, howToPlay, gameOver, invBG;
+PImage menu, howToPlay, gameOver, invBG, friend1, friend2;
 PVector crosshair;
 
 void setup() {
@@ -46,8 +46,8 @@ void setup() {
   invBG = loadImage("inventoryBG.png");
 
   // Friends
-  friend1 = new Friend1();
-  friend2 = new Friend2();
+ // friend1 = new Friend1();
+  // friend2 = new Friend2();
 
   // Buttons
   btnInventoryBack = new Button("Back", 220, 125, 55, 40);
@@ -65,6 +65,8 @@ void setup() {
   howToPlay = loadImage("lunacyHowToPlay.png");
   gameOver = loadImage("gameOver.png");
   ground = loadImage("ground.png");
+  friend1 = loadImage("sittingimagef1.png");
+  friend2 = loadImage("sittingimagef2.png");
 
   // Set fire and crosshair
   fire = new Fire();
