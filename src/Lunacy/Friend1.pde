@@ -1,31 +1,35 @@
 class Friend1 {
   // Member Variables
-  int x, y, x2, y2;
+  int x, y, x2, y2, w, h;
   PImage f1, f2, f3, f4;
   char state;
   Table dialogue;
   TableRow row;
   //Constructor
-  Friend1() {
-    x = 800;
-    y = 450;
-    x2 = 300;
-    y2 = 1500;
-    f1 = loadImage("sittingimagef1.png");
-    f1.resize(100,200);
+  Friend1(int x, int y) {
+    this.x = x;
+    this.y = y;
+    x2 = width/2-100;
+    y2 = height/2+80;
+    w = 75;
+    h = 75;
+    f1 = loadImage("sittingImage.png");
+    f1.resize(w, h);
     f2 = loadImage("normalsanityf1.png");
     f3 = loadImage("lowsanityf1.png");
     f4 = loadImage("verylowsanityf1.png");
-    state = 'n';
+    state = 's';
     dialogue = loadTable("tommydialogue.csv", "header");
   }
+  
+  
   // Member Methods
 void display() {
     imageMode(CENTER);
     if (state == 's') {
       image(f1, x, y);
     } else if (state == 'n') {
-      image(f1, x2, y2);
+      image(f2, x2, y2);
       //for (TableRow row : dialogue.rows()) {
 
       //  int id = row.getInt("id");
@@ -41,11 +45,13 @@ void display() {
       image(f4, x2, y2);
     }
   }
-//  boolean clicked(int tempX, int tempY) {
-  //  if (tempX > x-50/2 && tempX < x+50/2 && tempY > y-100/2 && tempY < y+100/2) {
-  //    return true;
- //   } else {
-//      return false;
-//    }
+  
+  
+  boolean clicked(int tempX, int tempY) {
+    if (tempX > x-50/2 && tempX < x+50/2 && tempY > y-100/2 && tempY < y+100/2) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
