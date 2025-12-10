@@ -4,11 +4,11 @@ class Friend2 {
   PImage f1;
   char state;
   //Constructor
-  Friend2() {
-    x = 1300;
-    y = 350;
+  Friend2(int x, int y) {
+    this.x = x;
+    this.y = y;
     f1 = loadImage("sittingImagef2.png");
-    f1.resize(100,100);
+    f1.resize(75, 75);
   }
   // Member Methods
   void display() {
