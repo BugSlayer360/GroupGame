@@ -7,7 +7,7 @@ class Fire {
     x = width/2;
     y = height/2+50;
     w = 125;
-    h = 150;
+    h = 125;
     bigFire = loadImage("bigFire.png");
     bigFire.resize(w, h);
     //dwindlingFire = loadImage("dwindling.png");
@@ -15,6 +15,7 @@ class Fire {
 
   void display() {
     imageMode(CENTER);
-    image(bigFire, x, y);
+    image(bigFire,x,y);
+    
   }
 }
