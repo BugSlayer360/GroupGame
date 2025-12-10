@@ -1,7 +1,7 @@
 // Ender Hale made this class | Lunacy
 // I helped! -Forrest
 // Sure..... -Ender
-// /forrest Jefferson made the sine waves bigger
+// I did! - Forrest
 class Bird {
 
   // ------------- Member Variables ---------------
@@ -99,10 +99,6 @@ class Bird {
       t2 = 0;
       y = int(startY);
     }
-
-
-
-    
   }
 
 
@@ -125,7 +121,7 @@ class Bird {
 
     case 2: // Sine wave
       t += 0.1;
-      y = int(baseY + sin(t *10* frequency) * amplitude);
+      y = int(baseY + sin(t * frequency) * amplitude);
       break;
 
     case 3: // Bezier swoop
@@ -167,14 +163,12 @@ class Bird {
     }
   }
   
-  boolean clicked(int tempX, int tempY) {
-      if (tempX > x-w/2 && tempX < x+w/2 && tempY > y-h/2 && tempY < y+h/2) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
   
+  boolean clicked(int tempX, int tempY) {
+    if (tempX > x-w/2 && tempX < x+w/2 && tempY > y-h/2 && tempY < y+h/2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
-
