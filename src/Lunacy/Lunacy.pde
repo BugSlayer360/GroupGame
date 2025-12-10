@@ -1,8 +1,8 @@
 // Lunacy Game - Ender Hale, Nico Snow, Forrest Jefferson | Dec 2025
 
 // Global variables
-//Friend1 friend1;
-//Friend2 friend2;
+Friend1 friend1;
+Friend2 friend2;
 Fire fire;
 Button btnBack, btnHowToPlay, btnPlay, btnPause, btnMenuHowToPlay, btnMenuPause, btnMenuGameOver, btnInventory, btnInventoryBack;
 Sign sign, leftSign, upSign, rightSign, downSign, rightBirdSign;
@@ -12,6 +12,7 @@ ArrayList<Tree> treesMain = new ArrayList<Tree>();
 ArrayList<Tree> treesForest = new ArrayList<Tree>();
 ArrayList<Bird> birds = new ArrayList<Bird>();
 
+
 // All-around variables
 int sanity;
 char screen = 'm';
@@ -20,6 +21,8 @@ char prevScreen;
 // Accuracy game variables
 float targetSize, shrinkingCircle, birdX, birdY;
 char requiredKey;
+// Keep track of specific bird
+Bird selectedBird = null; // Store a blank box for this variable
 
 // Inventory variables
 boolean invOpen, invClosing;
@@ -28,7 +31,7 @@ int woodCount, meatCount;
 char invPrevScreen;
 
 PImage ground;
-PImage menu, howToPlay, gameOver, invBG, friend1, friend2;
+PImage menu, howToPlay, gameOver, invBG;
 PVector crosshair;
 
 void setup() {
@@ -46,8 +49,8 @@ void setup() {
   invBG = loadImage("inventoryBG.png");
 
   // Friends
- // friend1 = new Friend1();
-  // friend2 = new Friend2();
+  friend1 = new Friend1(width/2-100, height/2+30);
+  friend2 = new Friend2(width/2+100, height/2+100);
 
   // Buttons
   btnInventoryBack = new Button("Back", 220, 125, 55, 40);
@@ -65,28 +68,27 @@ void setup() {
   howToPlay = loadImage("lunacyHowToPlay.png");
   gameOver = loadImage("gameOver.png");
   ground = loadImage("ground.png");
-  friend1 = loadImage("sittingimagef1.png");
-  friend2 = loadImage("sittingimagef2.png");
 
   // Set fire and crosshair
   fire = new Fire();
   crosshair = new PVector(width/2, height/2);
   crosshair.set(mouseX, mouseY);
 
-  // Clear and add new birds
-  birds.clear();
-  for (int i = 0; i < 4; i++) {  // spawn 4 birds
-    birds.add(new Bird());
-  }
+
 
   // Accuracy game variables
   targetSize = 50;
   shrinkingCircle = 200;
-  final char[] keyOptions = {'a', 's', 'd', 'f'};
+  final char[] keyOptions = {'a', 's', 'd'};
   requiredKey = keyOptions[int(random(keyOptions.length))];
   birdX = 0; // Placeholder
   birdY = 0; // Placeholder
-
+  
+    // Clear and add new birds
+  birds.clear();
+  for (int i = 0; i < 4; i++) {  // spawn 4 birds
+    birds.add(new Bird());
+  }
 
 
   // Signs
@@ -106,7 +108,7 @@ void setup() {
   treesMain.add(new Tree(400, 140, 230, 230));
 
   // Forest trees (placeholder)
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 8; i++) {
     treesForest.add(new Tree(0, 0, 230, 230));
   }
 }
@@ -159,11 +161,11 @@ void draw() {
     case 'i':
       inventory();
       break;
+    case 'a':
+      accuracyGame();
+      break;
     }
   }
-  // Display friends
-  friend1.display();
-  friend2.display();
 }
 
 
@@ -251,6 +253,10 @@ void mainRoomScreen() {
   btnPause.clicked(mouseX, mouseY);
   btnInventory.display(width-50, 40);
   btnInventory.clicked(mouseX, mouseY);
+
+  // Display friends
+  friend1.display();
+  friend2.display();
 }
 
 void forestRoomScreen() {
@@ -278,6 +284,8 @@ void forestRoomScreen() {
 
 
 void birdGame() {
+
+
   // Sets background to sky blue and moves ground down
   background(135, 206, 235);
   imageMode(CENTER);
@@ -289,19 +297,13 @@ void birdGame() {
     Bird b = birds.get(i);
     b.update();
     b.display();
+    
 
     // Check when bird is off screen
     if (b.reachedSide()) {
       birds.remove(i);
-      birds.add(new Bird());
-    }
-
-    for (Bird bird : birds) {
-      if (b.clicked(mouseX, mouseY)) {
-        birdX = bird.x;
-        birdY = bird.y;
-        accuracyGame();
-      }
+      // Spawn another bird
+        birds.add(new Bird());
     }
   }
 
@@ -327,12 +329,11 @@ void birdGame() {
 
 
 void accuracyGame() {
-  shrinkingCircle = 200;
   // Decrease circle by 2 pixels every frame
   shrinkingCircle -= 2;
   // Check for ending mini-game
   if (shrinkingCircle<=0) {
-    //go back to birdgame
+    screen = 'b';
   }
 
   // Draw Circles
@@ -352,7 +353,7 @@ void accuracyGame() {
   text("Press: " + requiredKey, width/2, height/2 + 100);
   popStyle();
 
-  checkKey(requiredKey);
+  checkKey();
 }
 
 
@@ -367,15 +368,34 @@ void waterfallScreen() {
 // -------------------- Forest Tree Randomization --------------------
 void randomizeForestTrees() {
   for (Tree t : treesForest) {
+    // Randomize placement
     t.update(int(random(width)), int(random(height)));
+    // While t.y < 60, update it again
+    do {
+      t.update(int(random(width)), int(random(height)));
+    } while (t.y < 60);
   }
 }
 
 // -------------------- Check key for accuracy game --------------------
-void checkKey(char keyPressed) {
-  if (keyPressed == requiredKey) {
-    screen = 'b';
-    meatCount += 1;
+void checkKey() {
+  // Check if any key pressed is the right key
+  if (keyPressed && (key == requiredKey)) {
+    // Check the if the absolue value of the shrinking circle is less than 20 pixels away from the target
+    if (abs(shrinkingCircle - targetSize) <= 20) {
+      meatCount ++;
+      // Remove specific bird
+      if (selectedBird != null) {
+        birds.remove(selectedBird);
+        selectedBird = null; // Reset selected bird for next game
+        // Spawn another bird
+          birds.add(new Bird());
+      }
+      // Switch screen back to bird game
+      screen = 'b';
+    } else {
+      
+    }
   }
 }
 
@@ -423,6 +443,8 @@ void inventory() {
 }
 // -------------------- Mouse interaction --------------------
 void mousePressed() {
+  // Prevent any mouse press from interrupting accuracy game
+  if (screen == 'a') return;
   // Menu / Pause / Game Over buttons
   if (btnMenuHowToPlay.clicked(mouseX, mouseY) && screen == 'h') {
     screen = 'm';
@@ -513,14 +535,28 @@ void mousePressed() {
     }
   }
 
-for (Bird bird : birds) {
-      if (bird.clicked(mouseX, mouseY)) {
-        birdX = bird.x;
-        birdY = bird.y;
+  // ------------------- Bird interaction -----------------------
+  if (screen == 'b') {
+    for (int i = birds.size()-1; i>=0; i--) {
+      Bird b = birds.get(i);
+      if (b.clicked(mouseX, mouseY)) {
+        birdX = b.x;
+        birdY = b.y;
+
+        // Keep track of this bird
+        selectedBird = b;
+
+        // Start accuracy game
+        shrinkingCircle = 150; // Reset shrinkingcircle
+        final char[] keyOptions = {'a', 's', 'd'};
+        requiredKey = keyOptions[int(random(keyOptions.length))];
+
+        // Change screen to accuracy game
         screen = 'a';
         return;
       }
     }
+  }
 
 
   // ------------------- Friend interaction -----------------------
