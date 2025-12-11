@@ -26,7 +26,7 @@ class Friend {
     f4 = loadImage("verylowsanityf1.png");
     f4.resize(w, h);
     car = loadImage("car.png");
-    car.resize(125, 125);
+    car.resize(150, 125);
     state = 's';
     dialogue = loadTable("tommydialogue.csv", "header");
   }
