@@ -1,31 +1,33 @@
-// Forrest Jefferson| wood
+// Forrest Jefferson| Wood
 class Wood {
-  
+
   //member variables
-  int w;
-  float x, y, d;
+  int w, h;
+  float x, y;
   PImage stick;
-  
+
   // Constructors
   Wood() {
-// wood is implemented randomly
-    this.x=random(width);
-    this.y=random(height);
-    w=15;
-//calculate distance beetween wood and mouse
-    d=dist(mouseX, mouseY, x, y);
+    // wood is implemented randomly
+    x = random(width);
+    y = random(height);
+    w = 50;
+    h = 50;
     stick = loadImage("stick.png");
+    stick.resize(w, h);
   }
-  
+
   void display() {
-//recalculate d every frame
-    d=dist(mouseX, mouseY, x, y);
-    stick.resize(w, w);
     image(stick, x, y);
   }
-  // if the mouse is near the stick, grabbed is true
-  boolean grabbed() {
-    if (d<15) {
+  
+  void update(int x, int y) {
+    this.x = x;
+    this.y = y;
+  }
+  
+  boolean clicked(int tempX, int tempY) {
+    if (tempX > x-w/2 && tempX < x+w/2 && tempY > y-h/2 && tempY < y+h/2) {
       return true;
     } else {
       return false;
