@@ -632,7 +632,7 @@ void mousePressed() {
 
   // ------------------- Friend interaction -----------------------
   // Friend interaction based on sanity
-  if (friend.clicked(mouseX, mouseY) && friend.state == 's') {
+  if (friend.clicked(mouseX, mouseY) && friend.state == 's' && screen == 'r') {
     screen = 'd';
     return;
   }
