@@ -1,3 +1,4 @@
+//Nico Snow
 class Friend {
   // Member Variables
   int x, y, cX, cY, x2, y2, sW, sH, w, h;
