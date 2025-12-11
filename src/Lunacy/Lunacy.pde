@@ -1,16 +1,16 @@
 // Lunacy Game - Ender Hale, Nico Snow, Forrest Jefferson | Dec 2025
 
 // Global variables
-Friend1 friend1;
-Friend2 friend2;
+Friend friend;
 Fire fire;
-Button btnBack, btnHowToPlay, btnPlay, btnPause, btnMenuHowToPlay, btnMenuPause, btnMenuGameOver, btnInventory, btnInventoryBack;
+Button btnBack, btnHowToPlay, btnPlay, btnPause, btnMenuHowToPlay, btnMenuPause, btnMenuGameOver, btnInventory, btnInventoryBack, btnFriendBack;
 Sign sign, leftSign, upSign, rightSign, downSign, rightBirdSign;
 
 // Arraylists
 ArrayList<Tree> treesMain = new ArrayList<Tree>();
 ArrayList<Tree> treesForest = new ArrayList<Tree>();
 ArrayList<Bird> birds = new ArrayList<Bird>();
+ArrayList<Wood> woods = new ArrayList<Wood>();
 
 
 // All-around variables
@@ -48,11 +48,11 @@ void setup() {
   meatCount = 0;
   invBG = loadImage("inventoryBG.png");
 
-  // Friends
-  friend1 = new Friend1(width/2-100, height/2+30);
-  friend2 = new Friend2(width/2+100, height/2+100);
+  // Friend
+  friend = new Friend(width/2-60, height/2-40, width/2-90, height/2-15);
 
   // Buttons
+  btnFriendBack = new Button("Back", 220, 125, 55, 40);
   btnInventoryBack = new Button("Back", 220, 125, 55, 40);
   btnInventory = new Button("Inventory", 220, 125, 100, 40);
   btnBack = new Button("Back", 220, 125, 55, 40);
@@ -79,12 +79,13 @@ void setup() {
   // Accuracy game variables
   targetSize = 50;
   shrinkingCircle = 200;
+  // Set key options for pressing
   final char[] keyOptions = {'a', 's', 'd'};
   requiredKey = keyOptions[int(random(keyOptions.length))];
   birdX = 0; // Placeholder
   birdY = 0; // Placeholder
-  
-    // Clear and add new birds
+
+  // Clear and add new birds
   birds.clear();
   for (int i = 0; i < 4; i++) {  // spawn 4 birds
     birds.add(new Bird());
@@ -109,7 +110,12 @@ void setup() {
 
   // Forest trees (placeholder)
   for (int i = 0; i < 8; i++) {
-    treesForest.add(new Tree(0, 0, 230, 230));
+    treesForest.add(new Tree(230, 230));
+  }
+
+  // Wood placement (placeholder)
+  for (int i = 0; i < 8; i++) {
+    woods.add(new Wood());
   }
 }
 
@@ -163,6 +169,9 @@ void draw() {
       break;
     case 'a':
       accuracyGame();
+      break;
+    case 'd':
+      friendDialogueScreen();
       break;
     }
   }
@@ -255,8 +264,7 @@ void mainRoomScreen() {
   btnInventory.clicked(mouseX, mouseY);
 
   // Display friends
-  friend1.display();
-  friend2.display();
+  friend.display();
 }
 
 void forestRoomScreen() {
@@ -269,6 +277,9 @@ void forestRoomScreen() {
 
   // Display randomized trees
   for (Tree t : treesForest) t.display();
+
+  // Display randomized trees
+  for (Wood w : woods) w.display();
 
   // Display and set clicked area for signs
   downSign.display();
@@ -297,13 +308,13 @@ void birdGame() {
     Bird b = birds.get(i);
     b.update();
     b.display();
-    
+
 
     // Check when bird is off screen
     if (b.reachedSide()) {
       birds.remove(i);
       // Spawn another bird
-        birds.add(new Bird());
+      birds.add(new Bird());
     }
   }
 
@@ -333,7 +344,13 @@ void accuracyGame() {
   shrinkingCircle -= 2;
   // Check for ending mini-game
   if (shrinkingCircle<=0) {
+    // Check for failing if they never pressed a key
+    if (selectedBird != null) {
+      selectedBird.speed = 15; // Speed bird up
+    }
+    selectedBird = null;
     screen = 'b';
+    return;
   }
 
   // Draw Circles
@@ -364,6 +381,16 @@ void waterfallScreen() {
 }
 
 
+void friendDialogueScreen() {
+  friend.display();
+  // Depending on sanity, show friend picture
+  if (sanity > 700) friend.state = 'n';
+  else if (sanity > 400) friend.state = 'l';
+  else friend.state = 'v';
+  btnFriendBack.display(width-30, height-30);
+  btnFriendBack.clicked(mouseX, mouseY);
+}
+
 
 // -------------------- Forest Tree Randomization --------------------
 void randomizeForestTrees() {
@@ -377,24 +404,58 @@ void randomizeForestTrees() {
   }
 }
 
+// -------------------- Wood Randomization --------------------
+void randomizeWood() {
+  for (Wood w : woods) {
+    // Randomize placement
+    w.update(int(random(width)), int(random(height)));
+    // While t.y < 60, update it again
+    do {
+      w.update(int(random(width)), int(random(height)));
+    } while (w.y < 60);
+  }
+}
+
 // -------------------- Check key for accuracy game --------------------
 void checkKey() {
+  if (!keyPressed) return;
+  // Wrong key, speed up bird
+  if (key != requiredKey) {
+    if (selectedBird != null) {
+      selectedBird.speed = 15;
+    }
+    selectedBird = null;
+    screen = 'b';
+    return;
+  }
+  // Float for distance between 2 circles
+  float distance = abs(shrinkingCircle - targetSize);
+
   // Check if any key pressed is the right key
   if (keyPressed && (key == requiredKey)) {
-    // Check the if the absolue value of the shrinking circle is less than 20 pixels away from the target
-    if (abs(shrinkingCircle - targetSize) <= 20) {
+    // Check if success
+    if (distance <= 20) {
+      // Add meat to inventory
       meatCount ++;
+
       // Remove specific bird
       if (selectedBird != null) {
         birds.remove(selectedBird);
         selectedBird = null; // Reset selected bird for next game
         // Spawn another bird
-          birds.add(new Bird());
+        birds.add(new Bird());
       }
-      // Switch screen back to bird game
+      // Reset everything
+      selectedBird = null;
       screen = 'b';
     } else {
-      
+      // Bad timing, speed up bird
+      if (selectedBird != null) {
+        selectedBird.speed = 15;
+      }
+      // Reset everything
+      selectedBird = null;
+      screen = 'b';
     }
   }
 }
@@ -492,6 +553,7 @@ void mousePressed() {
     } else if (upSign.clicked(mouseX, mouseY)) {
       screen = 'f';
       randomizeForestTrees(); // Randomize every time forest is entered
+      randomizeWood();
       return;
     } else if (rightSign.clicked(mouseX, mouseY)) {
       screen = 'j';
@@ -507,6 +569,15 @@ void mousePressed() {
     if (downSign.clicked(mouseX, mouseY)) {
       screen = 'r';
       return;
+    }
+
+    for (int i = woods.size()-1; i>=0; i--) {
+      Wood w = woods.get(i);
+      if (w.clicked(mouseX, mouseY)) {
+        woodCount++;
+        woods.remove(i);
+        return;
+      }
     }
   }
 
@@ -561,9 +632,14 @@ void mousePressed() {
 
   // ------------------- Friend interaction -----------------------
   // Friend interaction based on sanity
-  if (friend1.clicked(mouseX, mouseY)) {
-    if (sanity > 700) friend1.state = 'n';
-    else if (sanity > 400) friend1.state = 'l';
-    else friend1.state = 'v';
+  if (friend.clicked(mouseX, mouseY) && friend.state == 's') {
+    screen = 'd';
+    return;
+  }
+  
+  if (btnFriendBack.clicked(mouseX, mouseY) && screen == 'd') {
+    friend.state = 's';
+    screen = 'r';
+    return;
   }
 }
