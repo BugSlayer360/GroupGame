@@ -49,7 +49,7 @@ void setup() {
   invBG = loadImage("inventoryBG.png");
 
   // Friend
-  friend = new Friend(width/2-60, height/2-40, width/2-80, height/2-15);
+  friend = new Friend(width/2-60, height/2-68, width/2-80, height/2-15);
 
   // Buttons
   btnFriendBack = new Button("Back", 220, 125, 55, 40);
