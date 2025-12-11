@@ -52,7 +52,7 @@ class Friend {
     } else if (state == 'l') {
       image(f3, x2, height/2);
     } else if (state == 'v') {
-      image(f4, x2+20, height/2);
+      image(f4, x2+20, height/2+75);
     }
   }
 
